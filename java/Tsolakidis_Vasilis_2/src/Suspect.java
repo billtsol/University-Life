@@ -24,9 +24,10 @@ public class Suspect {
     public void addNewSupect(Suspect aSuspect) {
         if (!isConnectedTo(aSuspect)) {
             isConnected.add(aSuspect);
-        } else {
-            System.out.println("This parter is already existing");
         }
+        // else {
+        // System.out.println("This parter is already existing");
+        // }
     }
 
     public boolean isConnectedTo(Suspect aSuspect) {

@@ -1,3 +1,4 @@
+
 public class PhoneCall extends Communication {
     private int duration;
 
@@ -15,4 +16,10 @@ public class PhoneCall extends Communication {
         return "call";
     }
 
+    
+    public void printInfo() {
+        System.out.println("This phone call has the following info");
+        super.printInfo();
+        System.out.println("Duration: "+this.duration);
+    }
 }

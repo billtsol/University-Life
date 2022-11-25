@@ -33,7 +33,8 @@ public class Registry {
         int max = SuspectList.get(0).getConnectedList().size();
         Suspect curr = SuspectList.get(0);
         for (Suspect sp : SuspectList) {
-            if (max < sp.getConnectedList().size()) {
+        	//System.out.println(sp.getName() + " " + sp.getConnectedList().size());
+            if (max <= sp.getConnectedList().size()) {
                 max = sp.getConnectedList().size();
                 curr = sp;
             }
@@ -72,9 +73,10 @@ public class Registry {
     }
 
     public void printSuspectsFromCountry(String country) {
+    	System.out.println("Suspects coming from Spain:");
         for (Suspect sp : SuspectList) {
             if (sp.getCountry().equals(country)) {
-                System.out.println(sp.getName() + "  " + sp.getCodeName());
+                System.out.println(sp.getName() + " (" + sp.getCodeName()+")" );
             }
         }
     }

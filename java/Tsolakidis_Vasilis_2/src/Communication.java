@@ -1,4 +1,5 @@
 
+
 public class Communication {
     private String phone1;
     private String phone2;
@@ -6,7 +7,7 @@ public class Communication {
     private int month;
     private int day;
 
-    public Communication(String phone1, String phone2, int year, int month, int day) {
+    public Communication(String phone1, String phone2,int day,  int month,int year ) {
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.year = year;
@@ -15,9 +16,8 @@ public class Communication {
     }
 
     public void printInfo() {
-        System.out.println("Phone1 : " + this.phone1);
-        System.out.println("Phone2 : " + this.phone2);
-        System.out.println(this.day + " / " + this.month + " / " + this.year);
+        System.out.println("Between " + this.phone1 + " --- "+ this.phone2);
+        System.out.println("on "+this.year+ "/" + this.month + "/" + this.day);
     }
 
     public String getPhone1() {
