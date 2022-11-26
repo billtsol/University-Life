@@ -9,11 +9,17 @@ public class Registry {
     }
 
     public void addCommunication(Communication aCommunication) {
+        /*
+         * Βρίσκουμε τον έναν από τους δύο Suspects μέσω του τηλεφώνουμε 1 .
+         * και τον αποθηκεύουμε. Ψάχνουμε με τον suspect με το τηλέφωνο 2. Αφού τον
+         * βρούμε
+         * συνδέουμε τον αποθηκεύμενο suspect με αυτόν που βρίκαμε.
+         */
         communucationList.add(aCommunication);
         Suspect oneS = null;
         for (Suspect sp : SuspectList) {
             for (String phones : sp.getPhoneList()) {
-                if (aCommunication.getPhone1().equals(phones)) {
+                if (aCommunication.getPhoneNumber1().equals(phones)) {
                     oneS = sp;
                 }
             }
@@ -21,7 +27,7 @@ public class Registry {
 
         for (Suspect sp : SuspectList) {
             for (String phones : sp.getPhoneList()) {
-                if (aCommunication.getPhone2().equals(phones)) {
+                if (aCommunication.getPhoneNumber2().equals(phones)) {
                     oneS.addNewSupect(sp);
                     sp.addNewSupect(oneS);
                 }
@@ -33,7 +39,7 @@ public class Registry {
         int max = SuspectList.get(0).getConnectedList().size();
         Suspect curr = SuspectList.get(0);
         for (Suspect sp : SuspectList) {
-        	//System.out.println(sp.getName() + " " + sp.getConnectedList().size());
+            // System.out.println(sp.getName() + " " + sp.getConnectedList().size());
             if (max <= sp.getConnectedList().size()) {
                 max = sp.getConnectedList().size();
                 curr = sp;
@@ -47,7 +53,8 @@ public class Registry {
         PhoneCall res = null;
         for (Communication cm : communucationList) {
             if (cm.getType().equals("call")) {
-                if (cm.getPhone1().equals(number1) && cm.getPhone2().equals(number2) && max < cm.getDuration()) {
+                if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)
+                        && max < cm.getDuration()) {
                     max = cm.getDuration();
                     res = (PhoneCall) cm;
                 }
@@ -61,7 +68,7 @@ public class Registry {
 
         for (Communication cm : communucationList) {
             if (cm.getType().equals("sms")) {
-                if (cm.getPhone1().equals(number1) && cm.getPhone2().equals(number2)) {
+                if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)) {
                     if (cm.getMessage().contains("Bomb") || cm.getMessage().contains("Attack")
                             || cm.getMessage().contains("Explosives") || cm.getMessage().contains("Gun")) {
                         res.add((SMS) cm);
@@ -73,10 +80,10 @@ public class Registry {
     }
 
     public void printSuspectsFromCountry(String country) {
-    	System.out.println("Suspects coming from Spain:");
+        System.out.println("Suspects coming from Spain:");
         for (Suspect sp : SuspectList) {
             if (sp.getCountry().equals(country)) {
-                System.out.println(sp.getName() + " (" + sp.getCodeName()+")" );
+                System.out.println(sp.getName() + " (" + sp.getCodeName() + ")");
             }
         }
     }

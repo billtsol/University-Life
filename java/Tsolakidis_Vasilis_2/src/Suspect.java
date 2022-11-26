@@ -5,7 +5,6 @@ public class Suspect {
     private String username;
     private String country;
     private String city;
-
     ArrayList<String> phoneList = new ArrayList<String>();
 
     ArrayList<Suspect> isConnected = new ArrayList<Suspect>();
@@ -17,31 +16,16 @@ public class Suspect {
         this.city = city;
     }
 
-    public void addNumber(String number) {
-        this.phoneList.add(number);
+    public String getCountry() {
+        return this.country;
     }
 
-    public void addNewSupect(Suspect aSuspect) {
-        if (!isConnectedTo(aSuspect)) {
-            isConnected.add(aSuspect);
-        }
-        // else {
-        // System.out.println("This parter is already existing");
-        // }
+    public String getName() {
+        return this.name;
     }
 
-    public boolean isConnectedTo(Suspect aSuspect) {
-
-        for (Suspect isC : isConnected) {
-            for (String phone : isC.getPhoneList()) {
-                for (String phone2 : aSuspect.getPhoneList()) {
-                    if (phone.equals(phone2)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+    public String getCodeName() {
+        return this.username;
     }
 
     public ArrayList<String> getPhoneList() {
@@ -52,48 +36,63 @@ public class Suspect {
         return this.isConnected;
     }
 
-    public ArrayList<Suspect> getCommonPartners(Suspect aSuspect) {
-        ArrayList<Suspect> results = new ArrayList<Suspect>();
+    public void addNumber(String number) {
+        this.phoneList.add(number);
+    }
 
-        for (Suspect sp : aSuspect.getConnectedList()) {
-            for (Suspect currSp : isConnected) {
-                for (String phones1 : sp.getPhoneList()) {
-                    for (String currPhone : currSp.getPhoneList()) {
-                        if (phones1.equals(currPhone)) {
-                            results.add(sp);
-                        }
-                    }
+    public void addNewSupect(Suspect aSuspect) {
+        if (!isConnectedTo(aSuspect)) {
+            isConnected.add(aSuspect);
+        }
+    }
 
+    public boolean isConnectedTo(Suspect aSuspect) {
+        // return this.isConnected.contains(aSuspect);
+
+        for (Suspect suspect : this.isConnected) {
+            for (String phone : suspect.getPhoneList()) {
+                if (aSuspect.getPhoneList().contains(phone)) {
+                    return true;
                 }
             }
         }
+        return false;
+
+    }
+
+    public ArrayList<Suspect> getCommonPartners(Suspect aSuspect) {
+        ArrayList<Suspect> results = new ArrayList<Suspect>();
+        /*
+         * Διρατρέχω την λίστα με τους συνδεδεμένους Suspects, του suspect που ήρθε σαν
+         * όρισμα.
+         * Διατρέχω την λίστα με τους συνδεδεμένους Suspects, του τρέχων suspect.
+         * Για κάθε ένα τηλέφωνο των συνδεδεμένων Suspects του suspect που ήρθε ελέγχω
+         * εαν είναι μέσα στα τηλέφωνα των συνδεδεμένων Suspects του τρέχων suspect.
+         */
+        for (Suspect suspect : aSuspect.getConnectedList()) {
+            for (Suspect currSp : this.isConnected) {
+                // if (suspect.getCodeName().equals(currSp.getCodeName())) {
+                // results.add(suspect);
+                // }
+                // Μπορεί να γίνει και ελέγχοντας τα Code Name. Μοναδικά για κάθε Suspect
+                for (String phone1 : suspect.getPhoneList()) {
+                    if (currSp.getPhoneList().contains(phone1)) {
+                        results.add(suspect);
+                    }
+                }
+
+            }
+        }
         return results;
-
-    }
-
-    public String getCountry() {
-        return this.country;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public String getCodeName() {
-        return this.username;
     }
 
     public void printConnections() {
         for (Suspect sp : isConnected) {
             if (sp.getCountry().equals(this.country)) {
-                System.out.println("Name: " + sp.getName() + " Username: " + sp.getUsername() + "*");
+                System.out.println("Name: " + sp.getName() + " Username: " + sp.getCodeName() + "*");
 
             } else {
-                System.out.println("Name: " + sp.getName() + " Username: " + sp.getUsername());
+                System.out.println("Name: " + sp.getName() + " Username: " + sp.getCodeName());
             }
         }
     }
