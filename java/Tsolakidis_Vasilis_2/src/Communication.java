@@ -32,6 +32,6 @@ public abstract class Communication {
     // Επιστρέφει το μήνυμα στην κλάση SMS
     public abstract String getMessage();
 
-    // Επιστρέδει την διάρκεια της κλήσης στην κλάση PhoneCall
+    // Επιστρέfει την διάρκεια της κλήσης στην κλάση PhoneCall
     public abstract int getDuration();
 }

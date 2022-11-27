@@ -6,6 +6,7 @@ public class Main {
 
 		// Creation of suspect objects
 		Suspect s1 = new Suspect("John Dow", "Sleepy Dog", "Spain", "Barcelona");
+
 		s1.addNumber("00496955444444");
 		s1.addNumber("00496955333333");
 

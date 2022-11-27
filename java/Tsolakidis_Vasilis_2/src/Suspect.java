@@ -5,8 +5,8 @@ public class Suspect {
     private String username;
     private String country;
     private String city;
-    ArrayList<String> phoneList = new ArrayList<String>();
 
+    ArrayList<String> phoneList = new ArrayList<String>();
     ArrayList<Suspect> isConnected = new ArrayList<Suspect>();
 
     public Suspect(String name, String username, String country, String city) {
@@ -16,6 +16,7 @@ public class Suspect {
         this.city = city;
     }
 
+    // Getters
     public String getCountry() {
         return this.country;
     }
@@ -36,6 +37,7 @@ public class Suspect {
         return this.isConnected;
     }
 
+    // Methods
     public void addNumber(String number) {
         this.phoneList.add(number);
     }
@@ -47,40 +49,15 @@ public class Suspect {
     }
 
     public boolean isConnectedTo(Suspect aSuspect) {
-        // return this.isConnected.contains(aSuspect);
-
-        for (Suspect suspect : this.isConnected) {
-            for (String phone : suspect.getPhoneList()) {
-                if (aSuspect.getPhoneList().contains(phone)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-
+        return this.isConnected.contains(aSuspect);
     }
 
     public ArrayList<Suspect> getCommonPartners(Suspect aSuspect) {
         ArrayList<Suspect> results = new ArrayList<Suspect>();
-        /*
-         * Διρατρέχω την λίστα με τους συνδεδεμένους Suspects, του suspect που ήρθε σαν
-         * όρισμα.
-         * Διατρέχω την λίστα με τους συνδεδεμένους Suspects, του τρέχων suspect.
-         * Για κάθε ένα τηλέφωνο των συνδεδεμένων Suspects του suspect που ήρθε ελέγχω
-         * εαν είναι μέσα στα τηλέφωνα των συνδεδεμένων Suspects του τρέχων suspect.
-         */
-        for (Suspect suspect : aSuspect.getConnectedList()) {
-            for (Suspect currSp : this.isConnected) {
-                // if (suspect.getCodeName().equals(currSp.getCodeName())) {
-                // results.add(suspect);
-                // }
-                // Μπορεί να γίνει και ελέγχοντας τα Code Name. Μοναδικά για κάθε Suspect
-                for (String phone1 : suspect.getPhoneList()) {
-                    if (currSp.getPhoneList().contains(phone1)) {
-                        results.add(suspect);
-                    }
-                }
 
+        for (Suspect suspect : aSuspect.getConnectedList()) {
+            if (this.isConnected.contains(suspect)) {
+                results.add(suspect);
             }
         }
         return results;

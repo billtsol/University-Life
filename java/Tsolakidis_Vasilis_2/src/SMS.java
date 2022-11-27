@@ -4,7 +4,6 @@ public class SMS extends Communication {
     public SMS(String phoneNumber1, String phoneNumber2, int year, int month, int day, String message) {
         super(phoneNumber1, phoneNumber2, year, month, day);
         this.message = message;
-
     }
 
     @Override

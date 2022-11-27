@@ -4,7 +4,6 @@ public class PhoneCall extends Communication {
     public PhoneCall(String phoneNumber1, String phoneNumber2, int year, int month, int day, int duration) {
         super(phoneNumber1, phoneNumber2, year, month, day);
         this.duration = duration;
-
     }
 
     @Override

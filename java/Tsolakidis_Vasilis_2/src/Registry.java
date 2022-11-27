@@ -10,24 +10,25 @@ public class Registry {
 
     public void addCommunication(Communication aCommunication) {
         /*
-         * Βρίσκουμε τον έναν από τους δύο Suspects μέσω του τηλεφώνουμε 1 .
+         * Βρίσκουμε τον έναν από τους δύο Suspects μέσω του τηλεφώνου 1 .
          * και τον αποθηκεύουμε. Ψάχνουμε με τον suspect με το τηλέφωνο 2. Αφού τον
          * βρούμε
          * συνδέουμε τον αποθηκεύμενο suspect με αυτόν που βρίκαμε.
          */
         communucationList.add(aCommunication);
+
         Suspect oneS = null;
         for (Suspect sp : SuspectList) {
-            for (String phones : sp.getPhoneList()) {
-                if (aCommunication.getPhoneNumber1().equals(phones)) {
+            for (String phone : sp.getPhoneList()) {
+                if (aCommunication.getPhoneNumber1().equals(phone)) {
                     oneS = sp;
                 }
             }
         }
 
         for (Suspect sp : SuspectList) {
-            for (String phones : sp.getPhoneList()) {
-                if (aCommunication.getPhoneNumber2().equals(phones)) {
+            for (String phone : sp.getPhoneList()) {
+                if (aCommunication.getPhoneNumber2().equals(phone)) {
                     oneS.addNewSupect(sp);
                     sp.addNewSupect(oneS);
                 }
@@ -36,10 +37,13 @@ public class Registry {
     }
 
     public Suspect getSuspectWithMostPartners() {
+        /*
+         * Αρχικοποιώ στην μεταβλητή max με το μεγεθος του Connection List που εχει.
+         * Διατρέχω τον κάθε Suspect και ελέγχω το μέγεθος της Connection list του.
+         */
         int max = SuspectList.get(0).getConnectedList().size();
         Suspect curr = SuspectList.get(0);
         for (Suspect sp : SuspectList) {
-            // System.out.println(sp.getName() + " " + sp.getConnectedList().size());
             if (max <= sp.getConnectedList().size()) {
                 max = sp.getConnectedList().size();
                 curr = sp;
@@ -52,7 +56,7 @@ public class Registry {
         int max = -1;
         PhoneCall res = null;
         for (Communication cm : communucationList) {
-            if (cm.getType().equals("call")) {
+            if (cm.getType().equals("call")) { // Ελεγχω εαν ειναι PhoneCall Class
                 if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)
                         && max < cm.getDuration()) {
                     max = cm.getDuration();
@@ -67,7 +71,7 @@ public class Registry {
         ArrayList<SMS> res = new ArrayList<>();
 
         for (Communication cm : communucationList) {
-            if (cm.getType().equals("sms")) {
+            if (cm.getType().equals("sms")) {// Ελεγχω εαν ειναι SMS Class
                 if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)) {
                     if (cm.getMessage().contains("Bomb") || cm.getMessage().contains("Attack")
                             || cm.getMessage().contains("Explosives") || cm.getMessage().contains("Gun")) {
