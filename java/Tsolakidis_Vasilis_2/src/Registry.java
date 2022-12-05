@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import javax.sql.rowset.spi.SyncResolver;
+
 public class Registry {
     ArrayList<Communication> communucationList = new ArrayList<Communication>();
     ArrayList<Suspect> SuspectList = new ArrayList<Suspect>();
