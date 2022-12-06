@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-
-import javax.sql.rowset.spi.SyncResolver;
+import java.util.Arrays;
 
 public class Registry {
     ArrayList<Communication> communucationList = new ArrayList<Communication>();
@@ -56,33 +55,40 @@ public class Registry {
 
     public PhoneCall getLongestPhoneCallBetween(String number1, String number2) {
         int max = -1;
-        PhoneCall res = null;
+        PhoneCall results = null;
         for (Communication cm : communucationList) {
-            if (cm.getType().equals("call")) { // Ελεγχω εαν ειναι PhoneCall Class
+            if (cm.getClass() == PhoneCall.class) { // Ελεγχω εαν ειναι PhoneCall Class
                 if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)
                         && max < cm.getDuration()) {
                     max = cm.getDuration();
-                    res = (PhoneCall) cm;
+                    results = (PhoneCall) cm;
                 }
             }
         }
-        return res;
+        return results;
     }
 
     public ArrayList<SMS> getMessagesBetween(String number1, String number2) {
-        ArrayList<SMS> res = new ArrayList<>();
+        ArrayList<SMS> results = new ArrayList<SMS>();
+        ArrayList<String> messages = new ArrayList<String>();
+        messages.add("Bomb");
+        messages.add("Explosives");
+        messages.add("Attack");
+        messages.add("Gun");
 
         for (Communication cm : communucationList) {
-            if (cm.getType().equals("sms")) {// Ελεγχω εαν ειναι SMS Class
+            if (cm.getClass() == SMS.class) {// Ελεγχω εαν ειναι SMS Class
                 if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)) {
-                    if (cm.getMessage().contains("Bomb") || cm.getMessage().contains("Attack")
-                            || cm.getMessage().contains("Explosives") || cm.getMessage().contains("Gun")) {
-                        res.add((SMS) cm);
+                    for (String m : messages) {
+                        if (cm.getMessage().contains(m)) {
+                            results.add((SMS) cm);
+                            break;
+                        }
                     }
                 }
             }
         }
-        return res;
+        return results;
     }
 
     public void printSuspectsFromCountry(String country) {

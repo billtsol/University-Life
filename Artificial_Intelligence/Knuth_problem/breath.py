@@ -142,7 +142,7 @@ class Breath():
 
             self.addNewChildrens(newChildrens)
             self.addInQueue(self.childrens)
-        # self.search()
+        self.search()
 
     def search1(self):
         for i in range(200):
@@ -152,7 +152,7 @@ class Breath():
 myInput = 5
 test = Breath(4, myInput, 200)  # 960
 
-test.search1()
+test.search()
 
 # test.root.PrintTree()
 # for i in test.sos:

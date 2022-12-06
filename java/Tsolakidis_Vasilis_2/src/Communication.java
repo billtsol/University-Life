@@ -26,9 +26,6 @@ public abstract class Communication {
         System.out.println("on " + this.year + "/" + this.month + "/" + this.day);
     }
 
-    // Επιστρέφει τον τύπο της κλάσης
-    public abstract String getType();
-
     // Επιστρέφει το μήνυμα στην κλάση SMS
     public abstract String getMessage();
 

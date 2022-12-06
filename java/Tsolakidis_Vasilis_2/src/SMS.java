@@ -15,13 +15,9 @@ public class SMS extends Communication {
 
     @Override
     public int getDuration() {
-        return 0;
+        return -1;
     }
 
-    @Override
-    public String getType() {
-        return "sms";
-    }
 
     @Override
     public String getMessage() {

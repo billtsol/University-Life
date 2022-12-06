@@ -22,9 +22,4 @@ public class PhoneCall extends Communication {
     public int getDuration() {
         return this.duration;
     }
-
-    @Override
-    public String getType() {
-        return "call";
-    }
 }
