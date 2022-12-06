@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Registry {
     ArrayList<Communication> communucationList = new ArrayList<Communication>();
