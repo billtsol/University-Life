@@ -1,1 +1,1 @@
-# University of Macedonia
+# University life

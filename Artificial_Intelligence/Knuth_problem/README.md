@@ -1,3 +1,0 @@
-Knuth problem
-
-python
