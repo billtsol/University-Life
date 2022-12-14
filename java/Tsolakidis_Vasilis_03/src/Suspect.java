@@ -74,4 +74,22 @@ public class Suspect {
         }
     }
 
+    public ArrayList<Suspect> SuggestedPartners() {
+        ArrayList<Suspect> suggestedPartners = new ArrayList<Suspect>();
+
+        for (Suspect commonSuspect : this.isConnected) {
+            ArrayList<Suspect> commonSuspectConnectedList = (ArrayList<Suspect>) commonSuspect.getConnectedList()
+                    .clone();
+
+            commonSuspectConnectedList.remove(this);
+            for (Suspect isConnectedSuspectInCommonSuspect : commonSuspectConnectedList) {
+                if (!this.isConnected.contains(isConnectedSuspectInCommonSuspect)) {
+                    suggestedPartners.add(isConnectedSuspectInCommonSuspect);
+                }
+            }
+        }
+
+        return suggestedPartners;
+    }
+
 }
