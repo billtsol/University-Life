@@ -8,6 +8,10 @@ public class Registry {
         SuspectList.add(aSuspect);
     }
 
+    public ArrayList<Suspect> getSuspectList() {
+        return this.SuspectList;
+    }
+
     public void addCommunication(Communication aCommunication) {
         /*
          * Βρίσκουμε τον έναν από τους δύο Suspects μέσω του τηλεφώνου 1 .
