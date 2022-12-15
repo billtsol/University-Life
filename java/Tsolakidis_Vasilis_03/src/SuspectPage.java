@@ -47,7 +47,10 @@ public class SuspectPage extends JFrame {
     private JPanel panel5 = new JPanel();
     private JTextArea suspectsFromTheSameCountry;
 
-    public SuspectPage() {
+    private SearchPage searchPage;
+
+    public SuspectPage(SearchPage searchPage) {
+        this.searchPage = searchPage;
         // Panel 1
         suspectName = new JTextField("");
         suspectName.setPreferredSize(new Dimension(110, 24));
@@ -139,7 +142,7 @@ public class SuspectPage extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
         }
     }
 }

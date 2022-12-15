@@ -9,9 +9,11 @@ public class SearchPage extends JFrame {
     private JButton find_btn;
     private String searchInput = "";
     private Registry registry;
+    private SuspectPage suspectPage;
 
-    public SearchPage(Registry registry) {
+    public SearchPage(Registry registry, SuspectPage suspectPage) {
         this.registry = registry;
+        this.suspectPage = suspectPage;
         inputSearchField = new JTextField("Please enter suspect's name");
         find_btn = new JButton("Find");
 
@@ -46,7 +48,8 @@ public class SearchPage extends JFrame {
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] { "OK" },
                             null);
                 } else {
-
+                    setVisible(false);
+                    // suspectPage = new SuspectPage();
                 }
             }
         }

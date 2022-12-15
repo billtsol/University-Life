@@ -80,7 +80,9 @@ public class Main {
 		}
 		System.out.println("---------------------------------");
 
-		new SuspectPage();
+		SuspectPage suspectPage;
+		// SearchPage searchPage = new SearchPage(registry,suspectPage);
+
 	}
 
 }
