@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FindSuspectGUI extends JFrame {
+public class SearchPage extends JFrame {
 
     private JTextField inputSearchField = new JTextField();
     private JPanel panel = new JPanel();
@@ -10,7 +10,7 @@ public class FindSuspectGUI extends JFrame {
     private String searchInput = "";
     private Registry registry;
 
-    public FindSuspectGUI(Registry registry) {
+    public SearchPage(Registry registry) {
         this.registry = registry;
         inputSearchField = new JTextField("Please enter suspect's name");
         find_btn = new JButton("Find");

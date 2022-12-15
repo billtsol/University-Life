@@ -2,108 +2,135 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 public class SuspectPage extends JFrame {
-    private JPanel panel = new JPanel();
-    private JPanel fieldPanel = new JPanel();
+    private JPanel mainPane = new JPanel();
+    private JButton reuturnToSearchScreenBtn;
 
+    // Panel 1
+    private JPanel panel1 = new JPanel();
+    private JTextArea suspectPhones;
     private JTextField suspectName, suspectCodeName;
-    private JButton findSMS;
+
+    // Panel 2
+    private JPanel panel2 = new JPanel();
+    private JTextField suspectSearchNumber;
+    private JTextArea suspectMessages;
+    private JButton smsFindBtn;
+
+    // Panel 3
+    private JPanel panel3 = new JPanel();
+    private JTextArea possiblePartners;
+    private JLabel partnersLabel;
+
+    // Panel 4
+    private JPanel panel4 = new JPanel();
+    private JTextArea suggestedPartners;
+    private JLabel suggestedPartnersLabel;
+
+    // Panel 5
+    private JPanel panel5 = new JPanel();
+    private JTextArea suspectsFromTheSameCountry;
 
     public SuspectPage() {
-        panel.setLayout(new BorderLayout());
-
-        fieldPanel.setLayout(new GridLayout(3, 2));
-
-        suspectName = new JTextField("Code");
-        suspectCodeName = new JTextField("Destination");
-
-        findSMS = new JButton("Create Bulk");
-
-        fieldPanel.add(suspectName);
-        fieldPanel.add(suspectCodeName);
-        fieldPanel.add(findSMS);
-
-        panel.add(fieldPanel, BorderLayout.CENTER);
-
-        this.setContentPane(panel);
-
-        ButtonListener listener = new ButtonListener();
-        findSMS.addActionListener(listener);
-
-        setTitle("JPANEL CREATION");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
-        // setting the bounds for the JFrame
-        setBounds(100, 100, 645, 470);
-        Border br = BorderFactory.createLineBorder(Color.BLACK);
-        Container c = getContentPane();
-
-        // Creating a JPanel for the JFrame
-        JPanel panel = new JPanel();
-        JPanel panel2 = new JPanel();
-        JPanel panel3 = new JPanel();
-        JPanel panel4 = new JPanel();
-        // setting the panel layout as null
-        panel.setLayout(null);
-        panel2.setLayout(null);
-        panel3.setLayout(null);
-        panel4.setLayout(null);
-        // adding a label element to the panel
-        JLabel label = new JLabel("Panel 1");
-        JLabel label2 = new JLabel("Panel 2");
-        JLabel label3 = new JLabel("Panel 3");
-        JLabel label4 = new JLabel("Panel 4");
-
-        label.setBounds(120, 50, 200, 50);
-        label2.setBounds(120, 50, 200, 50);
-        label3.setBounds(120, 50, 200, 50);
-        label4.setBounds(120, 50, 200, 50);
-        panel.add(label);
-        panel2.add(label2);
-        panel3.add(label3);
-        panel4.add(label4);
-        // changing the background color of the panel to yellow
         // Panel 1
-        panel.setBackground(Color.YELLOW);
-        panel.setBounds(10, 10, 300, 200);
+        suspectName = new JTextField("");
+        suspectName.setPreferredSize(new Dimension(110, 24));
+
+        suspectCodeName = new JTextField("");
+        suspectCodeName.setPreferredSize(new Dimension(110, 24));
+
+        suspectPhones = new JTextArea(3, 14);
+        suspectPhones.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+        panel1 = new JPanel();
+        panel1.setLayout(new FlowLayout());
+        panel1.add(suspectName);
+        panel1.add(suspectCodeName);
+        panel1.add(suspectPhones);
+        panel1.setBorder(BorderFactory.createLineBorder(Color.black));
+
         // Panel 2
-        panel2.setBackground(Color.RED);
-        panel2.setBounds(320, 10, 300, 200);
+        suspectSearchNumber = new JTextField("");
+        suspectSearchNumber.setPreferredSize(new Dimension(135, 24));
+
+        suspectMessages = new JTextArea(12, 22);
+        suspectMessages.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        smsFindBtn = new JButton("Find SMS");
+
+        panel2 = new JPanel();
+        panel2.setLayout(new FlowLayout());
+        panel2.add(suspectSearchNumber);
+        panel2.add(suspectMessages);
+        panel2.add(smsFindBtn);
+        // panel2.setSize(400, 350);
+        panel2.setBorder(BorderFactory.createLineBorder(Color.black));
+
         // Panel 3
-        panel3.setBackground(Color.GREEN);
-        panel3.setBounds(10, 220, 300, 200);
+        possiblePartners = new JTextArea(15, 22);
+        partnersLabel = new JLabel("Partners");
+        possiblePartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+        panel3 = new JPanel();
+        panel3.setLayout(new FlowLayout());
+        panel3.add(partnersLabel);
+        panel3.add(possiblePartners);
+        panel3.setBorder(BorderFactory.createLineBorder(Color.black));
+
         // Panel 4
-        panel4.setBackground(Color.CYAN);
-        panel4.setBounds(320, 220, 300, 200);
+        suggestedPartnersLabel = new JLabel("Suggested Partners ---->");
 
-        // Panel border
-        panel.setBorder(br);
-        panel2.setBorder(br);
-        panel3.setBorder(br);
-        panel4.setBorder(br);
+        suggestedPartners = new JTextArea(6, 20);
+        suggestedPartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        // adding the panel to the Container of the JFrame
-        c.add(panel);
-        c.add(panel2);
-        c.add(panel3);
-        c.add(panel4);
+        panel4 = new JPanel();
+        panel4.setLayout(new FlowLayout());
+        panel4.add(suggestedPartnersLabel);
+        panel4.add(suggestedPartners);
+        panel4.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        // Panel 5
+        suspectsFromTheSameCountry = new JTextArea(6, 32);
+        suspectsFromTheSameCountry.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+        panel5 = new JPanel();
+        panel5.setLayout(new FlowLayout());
+        panel5.add(suspectsFromTheSameCountry);
+        panel5.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        // MAIN PANE
+        reuturnToSearchScreenBtn = new JButton("Return to Search Screen");
+        mainPane = new JPanel();
+        this.setLayout(new BoxLayout(mainPane, BoxLayout.Y_AXIS));
+
+        mainPane.add(panel1);
+        mainPane.add(panel2);
+        mainPane.add(panel3);
+        mainPane.add(panel4);
+        mainPane.add(panel5);
+        mainPane.add(reuturnToSearchScreenBtn);
+
+        this.setContentPane(mainPane);
 
         this.setVisible(true);
-        this.setSize(800, 700);
+        this.setSize(550, 830);
         this.setLocationRelativeTo(null);
         this.setTitle("Suspect Page");
-        this.setLocationByPlatform(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
@@ -112,7 +139,7 @@ public class SuspectPage extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            
         }
     }
 }
