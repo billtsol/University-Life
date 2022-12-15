@@ -9,11 +9,11 @@ public class SearchPage extends JFrame {
     private JButton find_btn;
     private String searchInput = "";
     private Registry registry;
-    private SuspectPage suspectPage;
+    private SearchPage thisSearchPage;
 
-    public SearchPage(Registry registry, SuspectPage suspectPage) {
+    public SearchPage(Registry registry) {
+        thisSearchPage = this;
         this.registry = registry;
-        this.suspectPage = suspectPage;
         inputSearchField = new JTextField("Please enter suspect's name");
         find_btn = new JButton("Find");
 
@@ -32,10 +32,15 @@ public class SearchPage extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public void changeInputField() {
+        this.inputSearchField.setText("Please enter suspect's name");
+    }
+
     class ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == find_btn) {
+
                 boolean find = false;
                 searchInput = inputSearchField.getText();
                 for (Suspect sp : registry.getSuspectList()) {
@@ -48,8 +53,8 @@ public class SearchPage extends JFrame {
                             JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[] { "OK" },
                             null);
                 } else {
+                    new SuspectPage(registry, thisSearchPage, inputSearchField.getText());
                     setVisible(false);
-                    // suspectPage = new SuspectPage();
                 }
             }
         }

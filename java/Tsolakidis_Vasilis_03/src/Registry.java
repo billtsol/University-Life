@@ -81,7 +81,8 @@ public class Registry {
 
         for (Communication cm : communucationList) {
             if (cm.getClass() == SMS.class) {// Ελεγχω εαν ειναι SMS Class
-                if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)) {
+                if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)
+                        || cm.getPhoneNumber1().equals(number2) && cm.getPhoneNumber2().equals(number1)) {
                     for (String m : messages) {
                         if (cm.getMessage().contains(m)) {
                             results.add((SMS) cm);
@@ -95,7 +96,10 @@ public class Registry {
     }
 
     public void printSuspectsFromCountry(String country) {
-        System.out.println("Suspects coming from Spain:");
+        System.out.println("Suspects coming from " + country + ": ");
+        // stin preogoymeni askisi ypeirxe ayto to println ->
+        // System.out.println("Suspects coming from Spain: ");
+        // apisteyto fail....... oups :)
         for (Suspect sp : SuspectList) {
             if (sp.getCountry().equals(country)) {
                 System.out.println(sp.getName() + " (" + sp.getCodeName() + ")");
