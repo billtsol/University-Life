@@ -80,6 +80,6 @@ public class Main {
 		}
 		System.out.println("---------------------------------");
 
-		new SearchPage(registry);
+		// new SearchPage(registry);
 	}
 }

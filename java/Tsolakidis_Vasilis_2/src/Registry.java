@@ -91,7 +91,7 @@ public class Registry {
     }
 
     public void printSuspectsFromCountry(String country) {
-        System.out.println("Suspects coming from Spain:");
+        System.out.println("Suspects coming from " + country + ": ");
         for (Suspect sp : SuspectList) {
             if (sp.getCountry().equals(country)) {
                 System.out.println(sp.getName() + " (" + sp.getCodeName() + ")");
