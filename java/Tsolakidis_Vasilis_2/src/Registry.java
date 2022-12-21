@@ -53,8 +53,10 @@ public class Registry {
     }
 
     public PhoneCall getLongestPhoneCallBetween(String number1, String number2) {
+
         int max = -1;
         PhoneCall results = null;
+
         for (Communication cm : communucationList) {
             if (cm.getClass() == PhoneCall.class) { // Ελεγχω εαν ειναι PhoneCall Class
                 if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)
@@ -77,7 +79,8 @@ public class Registry {
 
         for (Communication cm : communucationList) {
             if (cm.getClass() == SMS.class) {// Ελεγχω εαν ειναι SMS Class
-                if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)) {
+                if (cm.getPhoneNumber1().equals(number1) && cm.getPhoneNumber2().equals(number2)
+                        || cm.getPhoneNumber1().equals(number2) && cm.getPhoneNumber2().equals(number1)) {
                     for (String m : messages) {
                         if (cm.getMessage().contains(m)) {
                             results.add((SMS) cm);

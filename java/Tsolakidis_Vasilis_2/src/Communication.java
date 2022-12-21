@@ -4,7 +4,7 @@ public abstract class Communication {
     private int year;
     private int month;
     private int day;
-
+ 
     public Communication(String phoneNumber1, String phoneNumber2, int day, int month, int year) {
         this.phoneNumber1 = phoneNumber1;
         this.phoneNumber2 = phoneNumber2;

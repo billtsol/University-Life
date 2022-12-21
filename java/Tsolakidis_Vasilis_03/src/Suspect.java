@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Suspect {
     private String name;
@@ -88,6 +90,18 @@ public class Suspect {
                 }
             }
         }
+
+        // Set solution
+        // Set<Suspect> data = new LinkedHashSet<Suspect>();
+        // for (Suspect commonSuspect : this.isConnected) {
+        // for (Suspect isConnectedSuspectInCommonSuspect :
+        // commonSuspect.getConnectedList()) {
+        // if (!this.isConnected.contains(isConnectedSuspectInCommonSuspect)) {
+        // data.add(isConnectedSuspectInCommonSuspect);
+        // }
+        // }
+        // }
+        // data.remove(this);
 
         return suggestedPartners;
     }

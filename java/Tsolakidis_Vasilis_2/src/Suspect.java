@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-
+ 
 public class Suspect {
     private String name;
     private String username;
     private String country;
     private String city;
-
+  
     ArrayList<String> phoneList = new ArrayList<String>();
     ArrayList<Suspect> isConnected = new ArrayList<Suspect>();
 
