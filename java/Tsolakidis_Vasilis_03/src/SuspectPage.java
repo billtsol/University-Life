@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
 
-// Java program to illustrate
-// boolean addAll(Collection c)
-import java.io.*;
-
 public class SuspectPage extends JFrame {
     private JPanel mainPane = new JPanel();
     private JButton reuturnToSearchScreenBtn;
@@ -147,7 +143,6 @@ public class SuspectPage extends JFrame {
         smsFindBtn.addActionListener(listener);
 
         mainPane = new JPanel();
-        this.setLayout(new BoxLayout(mainPane, BoxLayout.Y_AXIS));
 
         mainPane.add(panel1);
         mainPane.add(panel2);
@@ -160,6 +155,7 @@ public class SuspectPage extends JFrame {
 
         this.setVisible(true);
         this.setSize(550, 830);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("Suspect Page");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
