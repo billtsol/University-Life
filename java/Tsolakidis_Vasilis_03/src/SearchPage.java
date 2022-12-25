@@ -25,9 +25,9 @@ public class SearchPage extends JFrame {
         ButtonListener listener = new ButtonListener();
         find_btn.addActionListener(listener);
 
-        this.setVisible(true);
         this.setSize(300, 150);
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
         this.setTitle("Find Suspect");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

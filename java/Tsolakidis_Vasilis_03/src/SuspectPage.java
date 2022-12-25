@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
 public class SuspectPage extends JFrame {
     private JPanel mainPane = new JPanel();
@@ -42,6 +44,8 @@ public class SuspectPage extends JFrame {
         this.registry = registry;
         this.searchPage = searchPage;
 
+        Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+
         for (Suspect sp : registry.getSuspectList()) {
             if (sp.getName().equals(suspectInputName)) {
                 this.suspect = sp;
@@ -59,7 +63,7 @@ public class SuspectPage extends JFrame {
         suspectCodeName = new JTextField(this.suspect.getCodeName());
         suspectCodeName.setPreferredSize(new Dimension(110, 24));
 
-        suspectPhones = new JTextArea(1, 14);
+        suspectPhones = new JTextArea(3, 14);
         for (String phone : suspect.getPhoneList()) {
             suspectPhones.append(phone + "\n");
         }
@@ -67,10 +71,13 @@ public class SuspectPage extends JFrame {
 
         panel1 = new JPanel();
         panel1.setLayout(new FlowLayout());
+
+        JScrollPane suspectPhonesScroll = new JScrollPane(suspectPhones, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         panel1.add(suspectName);
         panel1.add(suspectCodeName);
-        panel1.add(suspectPhones);
-        panel1.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel1.add(suspectPhonesScroll);
+        panel1.setBorder(loweredetched);
 
         // END of Panel 1
 
@@ -85,10 +92,14 @@ public class SuspectPage extends JFrame {
 
         panel2 = new JPanel();
         panel2.setLayout(new FlowLayout());
+
+        JScrollPane suspectMessagesScroll = new JScrollPane(suspectMessages, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         panel2.add(suspectSearchNumber);
-        panel2.add(suspectMessages);
+        panel2.add(suspectMessagesScroll);
         panel2.add(smsFindBtn);
-        panel2.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel2.setBorder(loweredetched);
 
         // Panel 3
         possiblePartners = new JTextArea(15, 22);
@@ -98,11 +109,14 @@ public class SuspectPage extends JFrame {
         partnersLabel = new JLabel("Partners");
         possiblePartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
+        JScrollPane possiblePartnersScroll = new JScrollPane(possiblePartners, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         panel3 = new JPanel();
         panel3.setLayout(new FlowLayout());
         panel3.add(partnersLabel);
-        panel3.add(possiblePartners);
-        panel3.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel3.add(possiblePartnersScroll);
+        panel3.setBorder(loweredetched);
 
         // END of Panel 3
 
@@ -115,11 +129,14 @@ public class SuspectPage extends JFrame {
         }
         suggestedPartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
+        JScrollPane suggestedPartnersScroll = new JScrollPane(suggestedPartners, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         panel4 = new JPanel();
         panel4.setLayout(new FlowLayout());
         panel4.add(suggestedPartnersLabel);
-        panel4.add(suggestedPartners);
-        panel4.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel4.add(suggestedPartnersScroll);
+        panel4.setBorder(loweredetched);
 
         // Panel 5
         suspectsFromTheSameCountry = new JTextArea(6, 32);
@@ -131,10 +148,14 @@ public class SuspectPage extends JFrame {
         }
         suspectsFromTheSameCountry.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
+        JScrollPane suspectsFromTheSameCountryScroll = new JScrollPane(suspectsFromTheSameCountry,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         panel5 = new JPanel();
         panel5.setLayout(new FlowLayout());
-        panel5.add(suspectsFromTheSameCountry);
-        panel5.setBorder(BorderFactory.createLineBorder(Color.black));
+        panel5.add(suspectsFromTheSameCountryScroll);
+        panel5.setBorder(loweredetched);
 
         // MAIN PANE
         reuturnToSearchScreenBtn = new JButton("Return to Search Screen");
@@ -153,10 +174,10 @@ public class SuspectPage extends JFrame {
 
         this.setContentPane(mainPane);
 
-        this.setVisible(true);
-        this.setSize(550, 830);
-        this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setSize(550, 900);
+        this.setResizable(false);
         this.setTitle("Suspect Page");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
