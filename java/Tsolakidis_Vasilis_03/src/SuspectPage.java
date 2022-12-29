@@ -1,11 +1,21 @@
-import java.awt.Color;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
+// import javax.swing.border.Border;
+// import java.awt.Color;
+// import javax.swing.border.EtchedBorder;
+
+/* Το τελευταίο αιώνα το διαδίκτυο έχει αλλάξει τον τρόπο που οι ανθρώπου αλληλεπιδρούν μεταξύ τους.
+ * Βομβαρδιζόμαστε καθημερινά με έναν δυσθεώρητο αριθμό καινούργιων πληροφοριών, τις οποίες καλούμαστε να επεξεργαστούμε.
+ * Βαθιά μέσα μας όμως συνοδευόμαστε από το σχετικό ένστικτο να απλοποιείς τα πράγματα μηδενίζοντας στην ουσία τους και εξαλείφοντας τα περιττά συστατικά.
+ * Όπως είχε αναφέρει ο Steve Jobs << Η απλότητα είναι η ΥΠΕΡΤΑΤΗ σοφιστεία.
+ * Και για να επιτευχθεί χρειάζεται πολλή σκληρή δουλειά, ώστε να κατανοήσουμε πραγματικά τις υποκείμενες προκλήσεις και να βρούμε κομψές λύσεις >>.
+ * Αναλογιζόμενος τα λεγόμενα αυτής της ευμεγέθους προσωπικότητας πήρα το θάρρος και αντικατέστησα, τα τετελεσμένα,
+ * δημιουργώντας μια άνευ προηγουμένου οπτική αναπαράσταση.
+*/
 
 public class SuspectPage extends JFrame {
     private JPanel mainPane = new JPanel();
@@ -44,7 +54,8 @@ public class SuspectPage extends JFrame {
         this.registry = registry;
         this.searchPage = searchPage;
 
-        Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+        // Border loweredetched =
+        // BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
 
         for (Suspect sp : registry.getSuspectList()) {
             if (sp.getName().equals(suspectInputName)) {
@@ -55,88 +66,88 @@ public class SuspectPage extends JFrame {
         ButtonListener listener = new ButtonListener();
 
         // Panel 1
-        // Soixeia toy ypotpoy
-
         suspectName = new JTextField(this.suspect.getName());
         suspectName.setPreferredSize(new Dimension(110, 24));
 
         suspectCodeName = new JTextField(this.suspect.getCodeName());
         suspectCodeName.setPreferredSize(new Dimension(110, 24));
 
-        suspectPhones = new JTextArea(3, 14);
+        suspectPhones = new JTextArea(3, 9);
         for (String phone : suspect.getPhoneList()) {
             suspectPhones.append(phone + "\n");
         }
-        suspectPhones.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+
+        // suspectPhones.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
         panel1 = new JPanel();
         panel1.setLayout(new FlowLayout());
 
-        JScrollPane suspectPhonesScroll = new JScrollPane(suspectPhones, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane suspectPhonesScroll = new JScrollPane(suspectPhones, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         panel1.add(suspectName);
         panel1.add(suspectCodeName);
         panel1.add(suspectPhonesScroll);
-        panel1.setBorder(loweredetched);
+        // panel1.setBorder(loweredetched);
 
         // END of Panel 1
 
         // Panel 2
         suspectSearchNumber = new JTextField("");
-        suspectSearchNumber.setPreferredSize(new Dimension(135, 24));
+        suspectSearchNumber.setPreferredSize(new Dimension(107, 24));
 
-        suspectMessages = new JTextArea(12, 22);
-        suspectMessages.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        suspectMessages = new JTextArea(10, 20);
+        // suspectMessages.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
         smsFindBtn = new JButton("Find SMS");
 
         panel2 = new JPanel();
         panel2.setLayout(new FlowLayout());
 
-        JScrollPane suspectMessagesScroll = new JScrollPane(suspectMessages, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane suspectMessagesScroll = new JScrollPane(suspectMessages, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         panel2.add(suspectSearchNumber);
         panel2.add(suspectMessagesScroll);
         panel2.add(smsFindBtn);
-        panel2.setBorder(loweredetched);
+        // panel2.setBorder(loweredetched);
 
         // Panel 3
-        possiblePartners = new JTextArea(15, 22);
+        possiblePartners = new JTextArea(10, 20);
         for (Suspect sp : suspect.getConnectedList()) {
             possiblePartners.append(sp.getName() + ", " + sp.getCodeName() + "\n");
         }
         partnersLabel = new JLabel("Partners");
-        possiblePartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        // possiblePartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        JScrollPane possiblePartnersScroll = new JScrollPane(possiblePartners, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane possiblePartnersScroll = new JScrollPane(possiblePartners, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         panel3 = new JPanel();
         panel3.setLayout(new FlowLayout());
         panel3.add(partnersLabel);
         panel3.add(possiblePartnersScroll);
-        panel3.setBorder(loweredetched);
+        // panel3.setBorder(loweredetched);
 
         // END of Panel 3
 
         // Panel 4
         suggestedPartnersLabel = new JLabel("Suggested Partners ---->");
 
-        suggestedPartners = new JTextArea(6, 20);
+        suggestedPartners = new JTextArea(6, 18);
         for (Suspect sp : suspect.SuggestedPartners()) {
             suggestedPartners.append(sp.getName() + "\n");
         }
-        suggestedPartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        // suggestedPartners.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
-        JScrollPane suggestedPartnersScroll = new JScrollPane(suggestedPartners, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane suggestedPartnersScroll = new JScrollPane(suggestedPartners,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         panel4 = new JPanel();
         panel4.setLayout(new FlowLayout());
         panel4.add(suggestedPartnersLabel);
         panel4.add(suggestedPartnersScroll);
-        panel4.setBorder(loweredetched);
+        // panel4.setBorder(loweredetched);
 
         // Panel 5
         suspectsFromTheSameCountry = new JTextArea(6, 32);
@@ -146,16 +157,16 @@ public class SuspectPage extends JFrame {
                 suspectsFromTheSameCountry.append(sp.getName() + "\n");
             }
         }
-        suspectsFromTheSameCountry.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        // suspectsFromTheSameCountry.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 
         JScrollPane suspectsFromTheSameCountryScroll = new JScrollPane(suspectsFromTheSameCountry,
-                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         panel5 = new JPanel();
         panel5.setLayout(new FlowLayout());
         panel5.add(suspectsFromTheSameCountryScroll);
-        panel5.setBorder(loweredetched);
+        // panel5.setBorder(loweredetched);
 
         // MAIN PANE
         reuturnToSearchScreenBtn = new JButton("Return to Search Screen");
@@ -176,7 +187,7 @@ public class SuspectPage extends JFrame {
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.setSize(550, 900);
+        this.setSize(525, 775);
         this.setResizable(false);
         this.setTitle("Suspect Page");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
