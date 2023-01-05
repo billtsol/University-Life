@@ -81,15 +81,6 @@ public class Main {
 		}
 		System.out.println("---------------------------------");
 
-		// new SearchPage(registry);
-
-		JOptionPane.showOptionDialog(null,
-				"Suspect " + " Not Found",
-				"Message",
-				JOptionPane.OK_CANCEL_OPTION,
-				JOptionPane.INFORMATION_MESSAGE,
-				null,
-				new Object[] { "OK" },
-				null);
+		new SearchPage(registry);
 	}
 }

@@ -224,7 +224,6 @@ public class SuspectPage extends JFrame {
                 } else {
                     suspectMessages.setText("Error! Phone number doesn't exist.");
                 }
-
             }
         }
     }
