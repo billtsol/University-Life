@@ -53,7 +53,6 @@ public class Main {
 
 		for (int i = 0; i < 15; i++)
 			registry.addCommunication(comms[i]);
-
 		new SearchPage(registry);
 	}
 
