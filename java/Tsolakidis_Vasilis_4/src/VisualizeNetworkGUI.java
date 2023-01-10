@@ -6,6 +6,7 @@ import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.layout.KKLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
+import edu.uci.ics.jung.algorithms.layout.SpringLayout;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.DirectedSparseMultigraph;
 import edu.uci.ics.jung.graph.Graph;
@@ -43,16 +44,16 @@ public class VisualizeNetworkGUI<V, E> extends JFrame {
         }
 
         // Layout<String, String> layout = new KKLayout<String, String>(g);
-        Layout<String, String> layout = new FRLayout<String, String>(g);
-        layout.setSize(new Dimension(350, 350));
+        Layout<String, String> layout = new CircleLayout<String, String>(g);
+        layout.setSize(new Dimension(300, 300));
 
         BasicVisualizationServer<String, String> vv = new BasicVisualizationServer<String, String>(layout);
-        vv.setPreferredSize(new Dimension(550, 550));
+        vv.setPreferredSize(new Dimension(450, 450));
 
         vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
 
         getContentPane().add(vv);
-        this.setSize(550, 550);
+        this.setSize(450, 450);
         this.setLocationRelativeTo(null);
         this.pack();
         this.setVisible(true);
