@@ -7,6 +7,7 @@ public class SearchPage extends JFrame {
     private JTextField inputSearchField = new JTextField();
     private JPanel panel = new JPanel();
     private JButton find_btn;
+    private JButton visualizeNetworkButton;
     private String searchInput = "";
     private Registry registry;
     private SearchPage thisSearchPage;
@@ -16,14 +17,17 @@ public class SearchPage extends JFrame {
         this.registry = registry;
         inputSearchField = new JTextField("Please enter suspect's name");
         find_btn = new JButton("Find");
+        visualizeNetworkButton = new JButton("Visualize Network");
 
         panel.add(inputSearchField);
         panel.add(find_btn);
+        panel.add(visualizeNetworkButton);
 
         this.setContentPane(panel);
 
         ButtonListener listener = new ButtonListener();
         find_btn.addActionListener(listener);
+        visualizeNetworkButton.addActionListener(listener);
 
         this.setSize(300, 150);
         this.setLocationRelativeTo(null);
@@ -56,6 +60,10 @@ public class SearchPage extends JFrame {
                     new SuspectPage(registry, thisSearchPage, inputSearchField.getText());
                     setVisible(false);
                 }
+            }
+
+            if (e.getSource() == visualizeNetworkButton) {
+                System.out.println("hi");
             }
         }
     }
