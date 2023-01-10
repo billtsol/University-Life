@@ -63,7 +63,8 @@ public class SearchPage extends JFrame {
             }
 
             if (e.getSource() == visualizeNetworkButton) {
-                System.out.println("hi");
+                new VisualizeNetworkGUI(registry);
+                setVisible(false);
             }
         }
     }
